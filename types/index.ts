@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react'
+
 export interface PokemonDataProps {
   name: string
   abilities?:
@@ -40,4 +42,9 @@ export interface HomepageProps {
 export interface ModalProps {
   handleClose: () => void
   pokemon: PokemonDataProps | undefined
+}
+
+export interface SearchProps {
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
+  query: string
 }
