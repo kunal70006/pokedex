@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import HomeComp from '../components/Home'
+import Pagination from '../components/Pagination'
+import { useRouter } from 'next/router'
 import { ChangeEvent, useState, useEffect } from 'react'
 import { PokemonDataProps } from '../types'
 import { getPokemons } from '../utils'
-import Pagination from '../components/Pagination'
 
-const Home = () => {
+const Page = () => {
+  const router = useRouter()
+  const { page } = router.query
   const [selectedOption, setSelectedOption] = useState<number>(10)
   const [pokemonData, setPokemonData] = useState<PokemonDataProps[]>([])
   const [pageCount, setPageCount] = useState<number>(1)
@@ -14,17 +17,18 @@ const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await getPokemons(selectedOption, 1)
+      const res = await getPokemons(selectedOption, Number(page))
       setPokemonData(res)
     }
     getData()
 
     setPageCount(Math.ceil(900 / selectedOption))
-  }, [selectedOption])
+  }, [selectedOption, page])
 
   // console.log(pageCount)
 
   if (!pokemonData) return <p>Loading...</p>
+  if (page === '0') router.replace('/')
 
   return (
     <>
@@ -45,4 +49,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Page

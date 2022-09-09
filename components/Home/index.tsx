@@ -5,7 +5,11 @@ import Modal from '../DetailsModal/Modal'
 import Search from '../Search'
 import { TYPE_COLOR } from '../../utils'
 
-const HomeComp = ({ pokemonData }: HomepageProps) => {
+const HomeComp = ({
+  pokemonData,
+  selectedValue,
+  handleSelectChange,
+}: HomepageProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [currPokemon, setCurrPokemon] = useState<PokemonDataProps>()
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -42,7 +46,8 @@ const HomeComp = ({ pokemonData }: HomepageProps) => {
     }
   }
 
-  console.log(selectedTypes)
+  // console.log(selectedTypes)
+  if (!pokemonData) return <p>Loading...</p>
 
   return (
     <div className="flex flex-col items-center">
@@ -50,7 +55,11 @@ const HomeComp = ({ pokemonData }: HomepageProps) => {
         POKEMONS
       </h1>
       <Search query={searchQuery} handleChange={handleChange} />
-      <div className="flex mt-8 w-full md:w-1/2 justify-between">
+      <div
+        className={`flex mt-8 flex-wrap w-full md:${
+          pokemonTypes.length > 7 ? 'w-full px-20' : 'w-1/2'
+        } justify-between`}
+      >
         {pokemonTypes.map((type, id) => (
           <div className="flex items-center" key={id}>
             <p
@@ -90,6 +99,18 @@ const HomeComp = ({ pokemonData }: HomepageProps) => {
             )
           }
         })}
+      </div>
+      <div className="flex w-full px-4 md:px-8 lg:px-20 items-start">
+        <h1 className="text-lg">Items per page: </h1>
+        <select
+          value={selectedValue}
+          onChange={handleSelectChange}
+          className="mb-4 ml-4 w-20 rounded-lg text-lg px-2 mt-1"
+        >
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
       </div>
     </div>
   )

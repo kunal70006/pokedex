@@ -3,7 +3,7 @@ import { ModalProps } from '../../types'
 import { capitalizeString, TYPE_COLOR } from '../../utils'
 
 const Modal = ({ handleClose, pokemon }: ModalProps) => {
-  console.log(pokemon)
+  // console.log(pokemon)
 
   return (
     <div className="flex fixed px-8 lg:p-0 top-0 left-0 z-[999] w-full min-h-screen bg-black/50 items-center justify-center">
@@ -16,6 +16,8 @@ const Modal = ({ handleClose, pokemon }: ModalProps) => {
         </p>
         <div
           className="flex w-full justify-center my-4 rounded-lg"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           style={{ backgroundColor: TYPE_COLOR[pokemon?.types[0].type.name] }}
         >
           <Image

@@ -37,6 +37,8 @@ export interface PokemonCardProps {
 
 export interface HomepageProps {
   pokemonData: PokemonDataProps[]
+  selectedValue: number
+  handleSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void
 }
 
 export interface ModalProps {
@@ -47,4 +49,8 @@ export interface ModalProps {
 export interface SearchProps {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   query: string
+}
+
+export interface PaginationProps {
+  total: number
 }
