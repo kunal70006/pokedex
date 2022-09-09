@@ -76,7 +76,8 @@ const HomeComp = ({ pokemonData }: HomepageProps) => {
       >
         {pokemonData.map((pokemon, id) => {
           if (
-            pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (selectedTypes.length === 0 &&
+              pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
             pokemon.types?.some((t) => selectedTypes.indexOf(t.type.name) >= 0)
           ) {
             return (
