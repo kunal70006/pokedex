@@ -64,6 +64,8 @@ const HomeComp = ({
           <div className="flex items-center" key={id}>
             <p
               className="px-2 py-0.5 mr-2 font-semibold rounded-lg"
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               style={{ backgroundColor: TYPE_COLOR[type] }}
             >
               {type}
