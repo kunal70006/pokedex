@@ -56,8 +56,8 @@ const HomeComp = ({
       </h1>
       <Search query={searchQuery} handleChange={handleChange} />
       <div
-        className={`flex mt-8 flex-wrap w-full md:${
-          pokemonTypes.length > 7 ? 'w-full px-20' : 'w-1/2'
+        className={`flex mt-8 flex-wrap w-full ${
+          pokemonTypes.length > 7 ? 'md:w-full md:px-20' : 'md:w-1/2'
         } justify-between`}
       >
         {pokemonTypes.map((type, id) => (
